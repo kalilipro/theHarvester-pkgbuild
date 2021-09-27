@@ -1,0 +1,36 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+pkgbase=spyse-python
+pkgname=python-spyse
+pkgver=2.2.3
+pkgrel=1
+pkgdesc="Spyse is the most complete Internet assets search engine for every cybersecurity professional."
+arch=('any')
+url="https://github.com/spyse-com/spyse-python"
+license=('MIT')
+depends=(
+    'python'
+    'python-requests'
+    'python-responses'
+    'python-mypy-extensions'
+    'python-typing_extensions'
+    'python-typing-inspect'
+    'python-marshmallow'
+    'python-marshmallow-enum'
+    'python-dataclasses-json'
+)
+makedepends=('python-setuptools')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://github.com/spyse-com/spyse-python/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}
+

@@ -1,0 +1,28 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter
+
+pkgbase=marshmallow
+pkgname=python-marshmallow
+pkgver=3.13.0
+pkgrel=1
+pkgdesc="marshmallow is an ORM/ODM/framework-agnostic library for converting complex datatypes, such as objects, to and from native Python datatypes"
+arch=('any')
+url="https://github.com/marshmallow-code/marshmallow"
+license=('MIT')
+depends=(
+    'python'
+)
+makedepends=('git' 'python-setuptools' 'python-pytest')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://github.com/marshmallow-code/marshmallow/archive/refs/tags/${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}

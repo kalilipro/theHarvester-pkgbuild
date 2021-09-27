@@ -1,0 +1,31 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+pkgbase=censys
+pkgname=python-censys
+pkgver=2.0.8
+pkgrel=1
+pkgdesc="An easy-to-use and lightweight API wrapper for Censys APIs (censys.io)."
+arch=('any')
+url="https://github.com/censys/censys-python"
+license=('Apache')
+depends=(
+    'python'
+    'python-requests'
+    'python-backoff'
+    'python-rich'
+)
+makedepends=('python-setuptools')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://files.pythonhosted.org/packages/4f/24/ef6dc67d9ced1111bff0ad04352901eb5d0dd77748058cc4d48842f16629/${pkgbase}-${pkgver}.tar.gz")
+sha256sums=('7c7b7727a87afe902a8cb264eb78fd9c2213a8fbd5d766064de313e1835998c1')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}
+

@@ -1,0 +1,27 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+pkgbase=mypy_extensions
+pkgname=python-mypy-extensions
+pkgver=0.4.3
+pkgrel=1
+pkgdesc="The mypy_extensions module defines experimental extensions to the standard typing module that are supported by the mypy typechecker."
+arch=('any')
+url="https://github.com/python/mypy_extensions"
+license=('MIT')
+depends=(
+    'python'
+)
+makedepends=('git' 'python-setuptools' 'python-pytest')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://github.com/python/mypy_extensions/archive/refs/tags/${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}

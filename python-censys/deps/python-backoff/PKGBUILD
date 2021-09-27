@@ -1,0 +1,29 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+
+pkgbase=backoff
+pkgname=python-backoff
+pkgver=1.11.1
+pkgrel=1
+pkgdesc="Function decoration for backoff and retry."
+arch=('any')
+url="https://github.com/litl/backoff"
+license=('MIT')
+depends=(
+    'python'
+)
+makedepends=('python-setuptools')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://files.pythonhosted.org/packages/27/d2/9d2d0f0d6bbe17628b031040b1dadaee616286267e660ad5286a5ed657da/${pkgbase}-${pkgver}.tar.gz")
+sha256sums=('ccb962a2378418c667b3c979b504fdeb7d9e0d29c0579e3b13b86467177728cb')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}
+

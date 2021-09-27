@@ -1,0 +1,28 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+pkgbase=limiter
+pkgname=python-limiter
+pkgver=0.1.2
+pkgrel=1
+pkgdesc="Rate-limiting thread-safe and asynchronous decorators and context managers that implement the token-bucket algorithm."
+arch=('any')
+url="https://github.com/alexdelorenzo/limiter/"
+license=('AGPL')
+depends=(
+    'python'
+    'python-token-bucket'
+)
+makedepends=('python-setuptools')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://github.com/alexdelorenzo/limiter/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}

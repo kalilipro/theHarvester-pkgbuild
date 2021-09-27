@@ -1,0 +1,27 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+pkgbase=typing_inspect
+pkgname=python-typing-inspect
+pkgver=0.7.1
+pkgrel=1
+pkgdesc="The typing_inspect module defines experimental API for runtime inspection of types defined in the Python standard typing module"
+arch=('any')
+url="https://github.com/ilevkivskyi/typing_inspect"
+license=('MIT')
+depends=(
+    'python'
+)
+makedepends=('git' 'python-setuptools' 'python-pytest')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://github.com/ilevkivskyi/typing_inspect/archive/refs/tags/${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}

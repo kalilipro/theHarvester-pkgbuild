@@ -1,0 +1,27 @@
+# Maintainer: Jay Townsend @jay_townsend1 on Twitter 
+pkgbase=marshmallow-enum
+pkgname=python-marshmallow-enum
+pkgver=1.5.1
+pkgrel=1
+pkgdesc="Enum field for Marshmallow"
+arch=('any')
+url="https://pypi.org/project/marshmallow-enum"
+license=('MIT')
+depends=(
+    'python'
+)
+makedepends=('python-setuptools' 'python-pytest')
+provides=("${pkgname}")
+conflicts=("${pkgname}")
+source=("https://files.pythonhosted.org/packages/8e/8c/ceecdce57dfd37913143087fffd15f38562a94f0d22823e3c66eac0dca31/${pkgbase}-${pkgver}.tar.gz")
+sha256sums=('38e697e11f45a8e64b4a1e664000897c659b60aa57bfa18d44e226a9920b6e58')
+
+build() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py build
+}
+
+package() {
+    cd "${srcdir}/${pkgbase}-${pkgver}"
+    python setup.py install --root=${pkgdir} --optimize=1 --skip-build
+}
