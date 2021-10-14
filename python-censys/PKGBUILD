@@ -16,7 +16,7 @@ depends=(
 makedepends=('python-setuptools')
 provides=("${pkgname}")
 conflicts=("${pkgname}")
-source=("https://files.pythonhosted.org/packages/4f/24/ef6dc67d9ced1111bff0ad04352901eb5d0dd77748058cc4d48842f16629/${pkgbase}-${pkgver}.tar.gz")
+source=("https://files.pythonhosted.org/packages/39/7d/1d8fcaf0b589cbd48f6655efaf5c12eb85dd2fdcd0838d9f5a2b5fa74a77/${pkgbase}-${pkgver}.tar.gz")
 sha256sums=('5a062f2b97f806879896c6a2a350fd36cae5724ae240abf0c2de40895b043a61')
 
 build() {
