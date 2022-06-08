@@ -2,7 +2,7 @@
 
 pkgbase=backoff
 pkgname=python-backoff
-pkgver=1.11.1
+pkgver=2.1.0
 pkgrel=1
 pkgdesc="Function decoration for backoff and retry."
 arch=('any')
@@ -14,8 +14,8 @@ depends=(
 makedepends=('python-setuptools')
 provides=("${pkgname}")
 conflicts=("${pkgname}")
-source=("https://files.pythonhosted.org/packages/27/d2/9d2d0f0d6bbe17628b031040b1dadaee616286267e660ad5286a5ed657da/${pkgbase}-${pkgver}.tar.gz")
-sha256sums=('ccb962a2378418c667b3c979b504fdeb7d9e0d29c0579e3b13b86467177728cb')
+source=("https://files.pythonhosted.org/packages/f0/04/09cd5bc4f46cab233b0c6f333f92e1cbca3ede2c91f1d51a42a807ecbb3d/${pkgbase}-${pkgver}.tar.gz")
+sha256sums=('7b5a6111f4ff1fc96fa9f017e0d2af0e7ce0f8354354aa7ce341741f1e7482a4')
 
 build() {
     cd "${srcdir}/${pkgbase}-${pkgver}"
